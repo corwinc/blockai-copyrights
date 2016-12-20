@@ -31,8 +31,9 @@ code, etc.
 ## Install
 
 ```
-git clone git@github.com:blockai/code-challenge.git
-cd code-challenge && npm install
+export GITHUB_USERNAME=your-github-username
+git clone git@github.com:blockai/code-challenge-${GITHUB_USERNAME}.git
+cd code-challenge=${GITHUB_USERNAME} && npm install
 ```
 
 ## Usage
