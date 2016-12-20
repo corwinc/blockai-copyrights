@@ -1,7 +1,7 @@
 import test from 'blue-tape'
-import init from '../src'
+import App from '../src'
 
 test('todo', (t) => {
-  t.ok(!!init)
+  t.ok(!!App)
   t.end()
 })
