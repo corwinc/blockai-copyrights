@@ -25,7 +25,8 @@ free to change anything, as long as you use React.
 
 The following will be counted as bonus but is not strictly required:
 writing a few tests, making eslint tests pass (`npm run lint`), using
-redux, using bootstrap, using react-router, commenting the code, etc.
+redux, using bootstrap, using react-router, using promises, commenting
+code, etc.
 
 ## Install
 
