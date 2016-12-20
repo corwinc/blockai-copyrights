@@ -45,6 +45,8 @@ You should see:
 
 ![screenshot](./boilerplate.png)
 
+The main entry point for the UI is in [src/index.jsx](./src/index.jsx).
+
 ## API documentation
 
 In order to retrieve copyright claims, you will need to use our API. As
