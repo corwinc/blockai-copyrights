@@ -1,3 +1,7 @@
-export default (state = {}, action) => {
+const initialState = {
+	test: 'test'
+}
+
+export default (state = initialState, action) => {
   return state
 }
