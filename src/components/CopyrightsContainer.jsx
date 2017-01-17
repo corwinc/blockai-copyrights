@@ -5,7 +5,7 @@ import Pagination from './Pagination.jsx';
 import TileGrid from './TileGrid.jsx';
 import * as actions from '../actions/index.js';
 
-class CopyrightsContainer extends React.Component {
+export default class CopyrightsContainer extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -23,24 +23,23 @@ class CopyrightsContainer extends React.Component {
 	render() {
 		return (
 			<div>
-				<div>Copyrights Container
-					
-				</div>
+				<Pagination />
+				<TileGrid />
 			</div>
 		);
 	}
 }
 
-function mapStateToProps(state) {
-  return {
-  	test: this.state.test
-  }
-}
+// function mapStateToProps(state) {
+//   return {
+//   	test: this.state.test
+//   }
+// }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    action: actions.action
-  }, dispatch);
-}
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({
+//     action: actions.action
+//   }, dispatch);
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CopyrightsContainer);
+// export default connect(mapStateToProps, mapDispatchToProps)(CopyrightsContainer);
