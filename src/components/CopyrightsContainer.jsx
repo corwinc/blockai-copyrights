@@ -3,28 +3,62 @@ import {render, connect} from 'react-dom';
 
 import Pagination from './Pagination.jsx';
 import TileGrid from './TileGrid.jsx';
+import Tile from './Tile.jsx';
 import * as actions from '../actions/index.js';
+import styles from '../styles/main.scss';
 
 export default class CopyrightsContainer extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			test: 'test'
+			copyrights: [
+				{
+					user: 'Corwin',
+					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
+					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
+					title: 'My copyright',
+					desc: 'Published on instagram.'
+				},
+				{
+					user: 'Jan',
+					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
+					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
+					title: 'Jan copyright',
+					desc: 'Published on instagram also!'
+				}
+			]
 		};
 
-		this.method = this.method.bind(this);
+		this.getCopyrights = this.getCopyrights.bind(this);
+		this.setCopyrights = this.setCopyrights.bind(this);
+		this.renderCopyrightTiles = this.renderCopyrightTiles.bind(this);
 	}
 
-	method() {
-		console.log('i am a method');
+	getCopyrights() {
+		// get request
+		// setCopyrights(response);
+	}
+
+	setCopyrights(copyrights) {
+		this.setState({copyrights});
+	}
+
+	renderCopyrightTiles() {
+		var copyrightTiles = this.state.copyrights.map((cr, i) => {
+			return (
+				<Tile key={i} copyright={cr} />
+			)
+		});
+
+		return copyrightTiles;
 	}
 
 	render() {
 		return (
-			<div>
-				<Pagination />
-				<TileGrid />
+			<div className={styles.copyrightsContainer}>
+				<Pagination className={styles.paginationContainerTop}/>
+				<TileGrid renderCopyrightTiles={this.renderCopyrightTiles} copyrights={this.state.copyrights}/>
 			</div>
 		);
 	}
