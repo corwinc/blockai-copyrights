@@ -1,9 +1,9 @@
 import React from 'react';
+import styles from '../styles/main.scss';
 
-const Pagination = function() {
+const Pagination = function(props) {
 	return (
-		<div>
-			<div id='pagination-container'>pagination</div>
+		<div className={props.className}>
 			<ul className="pagination">
 				<li className="page-item">
 				  <a className="page-link" href="#" aria-label="Previous">
