@@ -49,13 +49,29 @@
 .tileGridContainer {
 	position: absolute;
 	top: 60px;
+	width: 80%;
+	height: 3000px;
+	background: yellow;
+	align: center;
+	margin: 12px 10%;
+
+	display: flex;
+	flex-direction: column;
 }	
+
+.tileGridWrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
 
 .tileContainer {
 	height: 400px;
 	width: 296px;
 	border: 1px solid black;
 	display: inline-block;
+	margin: 20px 0;
 }
 
 .avatar {
