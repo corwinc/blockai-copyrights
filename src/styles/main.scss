@@ -1,3 +1,74 @@
+/************* MAIN CONTAINER *****************/
 .mainContainer {
   border: 1px solid red;
+}
+
+
+/************* NAV *****************/
+.navContainer {
+	height: 60px;
+	border: 1px solid black;
+}
+
+.navTitle {
+	position: absolute;
+	left: 30px;
+	font-size: 32px;
+	font-weight: bold;
+}
+
+
+
+/************* COPYRIGHTS CONTAINER *****************/
+.copyrightsContainer {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 50px;
+}
+
+
+
+/************* PAGINATION *****************/
+.paginationContainerTop {
+	position: absolute;
+	right: 30px;
+}
+
+.paginationContainerBottom {
+	position: absolute;
+	right: 30px;
+}
+
+.pagination {
+}
+
+
+
+/************* TILES *****************/
+.tileGridContainer {
+	position: absolute;
+	top: 60px;
+}	
+
+.tileContainer {
+	height: 400px;
+	width: 296px;
+	border: 1px solid black;
+	display: inline-block;
+}
+
+.avatar {
+	height: 30px;
+	width: 30px;
+	display: inline-block;
+}
+
+.name {
+	display: inline-block;
+}
+
+.copyrightImg {
+	height: width;
+	width: 100%;
 }
