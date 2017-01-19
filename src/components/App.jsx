@@ -1,43 +1,46 @@
 import React from 'react';
 import {render, connect} from 'react-dom';
 import ReactPlayer from 'react-player';
-
+import Nav from './Nav.jsx';
 import {Pagination} from 'react-bootstrap';
 import TileGrid from './TileGrid.jsx';
 import Tile from './Tile.jsx';
-import * as actions from '../actions/index.js';
-import styles from '../styles/main.scss';
 
-export default class CopyrightsContainer extends React.Component {
+import styles from '../styles/main.scss';
+import * as actions from '../actions/index.js';
+
+export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			copyrights: [],
 			activePage: 1,
-			total: null
+			total: null,
+			searchInput: ''
 		};
 
 		var items = 36;
 
-		this.onSelect = this.onSelect.bind(this);
 		this.getCopyrights = this.getCopyrights.bind(this);
 		this.setCopyrights = this.setCopyrights.bind(this);
 		this.renderCopyrightTiles = this.renderCopyrightTiles.bind(this);
 		this.renderMedia = this.renderMedia.bind(this);
+		this.onPageSelect = this.onPageSelect.bind(this);
+		this.handleSearchInput = this.handleSearchInput.bind(this);
+		this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
 	}
 
 	componentDidMount() {
 		this.getCopyrights();
 	}
 
-	onSelect(page) {
-	  	this.setState({activePage: page}, this.getCopyrights);
-	}
 
+//// COPYRIGHT CLAIMS ////
 	getCopyrights() {
 		var items = 36;
-		var url = 'https://api.blockai.com/v1/registrations/challenge?include=user&page=' + this.state.activePage + '&limit=' + items;
+		var url = 'https://api.blockai.com/v1/registrations/challenge?include=user&page=' + this.state.activePage + '&limit=' + items + '&search=' + this.state.searchInput;
+
 		fetch(url)
 			.then((res) => res.json())
 		    .then((data) => {
@@ -70,25 +73,48 @@ export default class CopyrightsContainer extends React.Component {
 		}
 	}
 
+//// PAGINATION ////
+	onPageSelect(page) {
+	  	this.setState({activePage: page}, this.getCopyrights);
+	}
+
+//// SEARCH ////
+	handleSearchInput(e) {
+		this.setState({searchInput: e.target.value});
+	}
+
+	handleSearchSubmit(e) {
+		e.preventDefault();
+		this.setState({activePage: 1}, this.getCopyrights);
+	}
+
+
+//// RENDER ////
 	render() {
 		var pages = Math.ceil(this.state.total / 36);
 
 		return (
-			<div className={styles.copyrightsContainer}>
-				<Pagination 
-					prev
-					next
-					first
-					last
-					items={pages}
-					activePage={this.state.activePage}
-					onSelect={this.onSelect}
-					maxButtons={5}
-		        />
-				<TileGrid 
-					renderCopyrightTiles={this.renderCopyrightTiles} 
-					copyrights={this.state.copyrights}
+			<div>
+				<Nav 
+					handleSearchInput={this.handleSearchInput} 
+					handleSearchSubmit={this.handleSearchSubmit} 
 				/>
+				<div className={styles.copyrightsContainer}>
+					<Pagination 
+						prev
+						next
+						first
+						last
+						items={pages}
+						activePage={this.state.activePage}
+						onSelect={this.onPageSelect}
+						maxButtons={5}
+			        />
+					<TileGrid 
+						renderCopyrightTiles={this.renderCopyrightTiles} 
+						copyrights={this.state.copyrights}
+					/>
+				</div>
 			</div>
 		);
 	}

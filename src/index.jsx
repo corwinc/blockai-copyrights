@@ -5,16 +5,14 @@ import { Button } from 'react-bootstrap'
 import configureStore from './configureStore'
 import styles from './styles/main.scss'
 
-import Nav from './components/Nav.jsx';
-import CopyrightsContainer from './components/CopyrightsContainer.jsx';
+import App from './components/App.jsx';
 
 const Store = configureStore()
 
 export default (
   <Provider store={Store}>
     <div>
-    	<Nav />
-    	<CopyrightsContainer />
+    	<App />
     </div>
   </Provider>
 )
