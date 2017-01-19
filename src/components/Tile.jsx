@@ -7,7 +7,7 @@ const Tile = function(props) {
 		<div className={styles.tileContainer}><a href={props.copyright.certificateUrls.png} target="_blank">
 			<img className={styles.avatar} src={props.copyright.user.avatar_url}></img>
 			<div className={styles.name}>{props.copyright.user.name}</div>
-			{ props.checkCopyrightType(props.copyright) }
+			{ props.renderMedia(props.copyright) }
 			<div>{props.copyright.name}</div>
 			<div>{props.copyright.description}</div>
 		</a></div>

@@ -24,7 +24,7 @@ export default class CopyrightsContainer extends React.Component {
 		this.getCopyrights = this.getCopyrights.bind(this);
 		this.setCopyrights = this.setCopyrights.bind(this);
 		this.renderCopyrightTiles = this.renderCopyrightTiles.bind(this);
-		this.checkCopyrightType = this.checkCopyrightType.bind(this);
+		this.renderMedia = this.renderMedia.bind(this);
 	}
 
 	componentDidMount() {
@@ -55,14 +55,14 @@ export default class CopyrightsContainer extends React.Component {
 	renderCopyrightTiles() {
 		var copyrightTiles = this.state.copyrights.map((cr, i) => {
 			return (
-				<Tile key={cr.id} copyright={cr} checkCopyrightType={this.checkCopyrightType} />
+				<Tile key={cr.id} copyright={cr} renderMedia={this.renderMedia} />
 			)
 		});
 
 		return copyrightTiles;
 	}
 
-	checkCopyrightType(cr) {
+	renderMedia(cr) {
 		if (cr.content_type_primary === 'video') {
 			return <ReactPlayer className={styles.copyrightImg} url={cr.thumbURL} />
 		} else if (cr.content_type_primary === 'image') {
