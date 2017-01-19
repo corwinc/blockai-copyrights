@@ -1,5 +1,6 @@
 import React from 'react';
 import {render, connect} from 'react-dom';
+import ReactPlayer from 'react-player';
 
 import {Pagination} from 'react-bootstrap';
 import TileGrid from './TileGrid.jsx';
@@ -12,317 +13,7 @@ export default class CopyrightsContainer extends React.Component {
 		super(props);
 
 		this.state = {
-			copyrights: [
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				},
-				{
-					user: 'Corwin',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'My copyright',
-					desc: 'Published on instagram.'
-				},
-				{
-					user: 'Jan',
-					avatar: 'https://files.blockai.com/v1/files/KdGNObx2n12z+avatar.png',
-					img: 'https://files.blockai.com/v1/transform/thumb/bKmwXQpQ41G7',
-					title: 'Jan copyright',
-					desc: 'Published on instagram also!'
-				}
-
-			],
+			copyrights: [],
 			activePage: 1
 		};
 
@@ -330,6 +21,7 @@ export default class CopyrightsContainer extends React.Component {
 		this.getCopyrights = this.getCopyrights.bind(this);
 		this.setCopyrights = this.setCopyrights.bind(this);
 		this.renderCopyrightTiles = this.renderCopyrightTiles.bind(this);
+		this.checkCopyrightType = this.checkCopyrightType.bind(this);
 	}
 
 	componentDidMount() {
@@ -342,8 +34,17 @@ export default class CopyrightsContainer extends React.Component {
 
 	getCopyrights() {
 		console.log('inside getCopyrights');
-		// get request
-		// then: setCopyrights(response);
+		var url = 'https://api.blockai.com/v1/registrations/challenge?include=user&page=1&limit=' + 36;
+		fetch(url)
+			.then((res) => res.json())
+		    .then((data) => {
+		    	console.log('data:', data);
+		    	data = data.data;
+		      	this.setState({copyrights: data}, () => console.log('copyrights: ', this.state.copyrights));
+		    })
+		    .catch((err) => (
+		    	console.log(err)
+		    ));
 	}
 
 	setCopyrights(copyrights) {
@@ -358,11 +59,19 @@ export default class CopyrightsContainer extends React.Component {
 		console.log('selectTiles:', selectTiles);
 		var copyrightTiles = selectTiles.map((cr, i) => {
 			return (
-				<Tile key={i} copyright={cr} />
+				<Tile key={i} copyright={cr} checkCopyrightType={this.checkCopyrightType} />
 			)
 		});
 
 		return copyrightTiles;
+	}
+
+	checkCopyrightType(cr) {
+		if (cr.content_type_primary === 'video') {
+			return <ReactPlayer className={styles.copyrightImg} url={cr.thumbURL} />
+		} else if (cr.content_type_primary === 'image') {
+			return <img className={styles.copyrightImg} src={cr.thumbUrl}></img>
+		}
 	}
 
 	render() {
@@ -380,7 +89,10 @@ export default class CopyrightsContainer extends React.Component {
 					onSelect={this.onSelect}
 					maxButtons={5}
 		        />
-				<TileGrid renderCopyrightTiles={this.renderCopyrightTiles} copyrights={this.state.copyrights}/>
+				<TileGrid 
+					renderCopyrightTiles={this.renderCopyrightTiles} 
+					copyrights={this.state.copyrights}
+				/>
 			</div>
 		);
 	}
