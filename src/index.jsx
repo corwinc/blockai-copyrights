@@ -18,11 +18,3 @@ export default (
     </div>
   </Provider>
 )
-
-// export default (
-//   <Provider store={Store}>
-//     <div className={styles.mainContainer}>
-//       <Button>Hello world</Button>
-//     </div>
-//   </Provider>
-// )
