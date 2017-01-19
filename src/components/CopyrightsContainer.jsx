@@ -55,7 +55,7 @@ export default class CopyrightsContainer extends React.Component {
 	renderCopyrightTiles() {
 		var copyrightTiles = this.state.copyrights.map((cr, i) => {
 			return (
-				<Tile key={i} copyright={cr} checkCopyrightType={this.checkCopyrightType} />
+				<Tile key={cr.id} copyright={cr} checkCopyrightType={this.checkCopyrightType} />
 			)
 		});
 
