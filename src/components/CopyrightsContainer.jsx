@@ -14,8 +14,11 @@ export default class CopyrightsContainer extends React.Component {
 
 		this.state = {
 			copyrights: [],
-			activePage: 1
+			activePage: 1,
+			total: null
 		};
+
+		var items = 36;
 
 		this.onSelect = this.onSelect.bind(this);
 		this.getCopyrights = this.getCopyrights.bind(this);
@@ -28,36 +31,29 @@ export default class CopyrightsContainer extends React.Component {
 		this.getCopyrights();
 	}
 
-	onSelect(number) {
-	  	this.setState({activePage: number});
+	onSelect(page) {
+	  	this.setState({activePage: page}, this.getCopyrights);
 	}
 
 	getCopyrights() {
-		console.log('inside getCopyrights');
-		var url = 'https://api.blockai.com/v1/registrations/challenge?include=user&page=1&limit=' + 36;
+		var items = 36;
+		var url = 'https://api.blockai.com/v1/registrations/challenge?include=user&page=' + this.state.activePage + '&limit=' + items;
 		fetch(url)
 			.then((res) => res.json())
 		    .then((data) => {
-		    	console.log('data:', data);
-		    	data = data.data;
-		      	this.setState({copyrights: data}, () => console.log('copyrights: ', this.state.copyrights));
+		      	this.setCopyrights(data);
 		    })
 		    .catch((err) => (
 		    	console.log(err)
 		    ));
 	}
 
-	setCopyrights(copyrights) {
-		this.setState({copyrights});
+	setCopyrights(res) {
+		this.setState({copyrights: res.data, total: res.total});
 	}
 
 	renderCopyrightTiles() {
-		var tilesStart = (this.state.activePage - 1) * 36;
-		var tilesEnd = this.state.activePage * 36;
-		console.log('tilesStart:', tilesStart);
-		var selectTiles = this.state.copyrights.slice(tilesStart, tilesEnd);
-		console.log('selectTiles:', selectTiles);
-		var copyrightTiles = selectTiles.map((cr, i) => {
+		var copyrightTiles = this.state.copyrights.map((cr, i) => {
 			return (
 				<Tile key={i} copyright={cr} checkCopyrightType={this.checkCopyrightType} />
 			)
@@ -75,7 +71,7 @@ export default class CopyrightsContainer extends React.Component {
 	}
 
 	render() {
-		var pages = Math.ceil(this.state.copyrights.length / 36);
+		var pages = Math.ceil(this.state.total / 36);
 
 		return (
 			<div className={styles.copyrightsContainer}>
