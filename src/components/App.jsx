@@ -13,6 +13,7 @@ export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 
+		// DELETE W/ REDUX
 		this.state = {
 			copyrights: [],
 			activePage: 1,
@@ -22,6 +23,7 @@ export default class App extends React.Component {
 
 		var items = 36;
 
+		// SELECTIVELY DELETE W/ REDUX
 		this.getCopyrights = this.getCopyrights.bind(this);
 		this.setCopyrights = this.setCopyrights.bind(this);
 		this.renderCopyrightTiles = this.renderCopyrightTiles.bind(this);
@@ -39,11 +41,13 @@ export default class App extends React.Component {
 //// COPYRIGHT CLAIMS ////
 	getCopyrights() {
 		var items = 36;
+		// var url = 'https://api.blockai.com/v1/registrations/challenge?include=user&page=' + this.props.activePage + '&limit=' + items + '&search=' + this.props.searchInput;
 		var url = 'https://api.blockai.com/v1/registrations/challenge?include=user&page=' + this.state.activePage + '&limit=' + items + '&search=' + this.state.searchInput;
 
 		fetch(url)
 			.then((res) => res.json())
 		    .then((data) => {
+		    	//this.props.getCopyrightsSuccess(data.data, data.total);
 		      	this.setCopyrights(data);
 		    })
 		    .catch((err) => (
@@ -51,11 +55,13 @@ export default class App extends React.Component {
 		    ));
 	}
 
+	// DELETE W/ REDUX
 	setCopyrights(res) {
 		this.setState({copyrights: res.data, total: res.total});
 	}
 
 	renderCopyrightTiles() {
+		// var copyrightTiles = this.props.copyrights.map((cr, i) => {
 		var copyrightTiles = this.state.copyrights.map((cr, i) => {
 			return (
 				<Tile key={cr.id} copyright={cr} renderMedia={this.renderMedia} />
@@ -67,24 +73,36 @@ export default class App extends React.Component {
 
 	renderMedia(cr) {
 		if (cr.content_type_primary === 'video') {
-			return <ReactPlayer className={styles.copyrightImg} url={cr.thumbURL} />
+			return (
+				<div>
+					<ReactPlayer url={cr.thumbURL} width={320} height={320} playing={false}/>
+				</div>
+			)
 		} else if (cr.content_type_primary === 'image') {
-			return <img className={styles.copyrightImg} src={cr.thumbUrl}></img>
+			return (
+				<div>
+					<img className={styles.copyrightThumb} src={cr.thumbUrl}></img>
+				</div>
+			) 
 		}
 	}
 
 //// PAGINATION ////
+	// DELETE W/ REDUX
 	onPageSelect(page) {
 	  	this.setState({activePage: page}, this.getCopyrights);
 	}
 
 //// SEARCH ////
+	// DELETE W/ REDUX
 	handleSearchInput(e) {
 		this.setState({searchInput: e.target.value});
 	}
 
 	handleSearchSubmit(e) {
 		e.preventDefault();
+		// IMPLEMENT ASYNCHRONOUS HANDLING
+		// this.props.handleSearchSubmit, this.getCopyrights);
 		this.setState({activePage: 1}, this.getCopyrights);
 	}
 
@@ -94,26 +112,47 @@ export default class App extends React.Component {
 		var pages = Math.ceil(this.state.total / 36);
 
 		return (
-			<div>
+			<div className={styles.appContainer}>
 				<Nav 
+					// handleSearchInput={this.props.handleSearchInput} 
+					// handleSearchSubmit={this.props.handleSearchSubmit}
 					handleSearchInput={this.handleSearchInput} 
 					handleSearchSubmit={this.handleSearchSubmit} 
 				/>
 				<div className={styles.copyrightsContainer}>
-					<Pagination 
-						prev
-						next
-						first
-						last
-						items={pages}
-						activePage={this.state.activePage}
-						onSelect={this.onPageSelect}
-						maxButtons={5}
-			        />
+					<div className={styles.paginationContainerTop}>
+						<Pagination 
+							prev
+							next
+							first
+							last
+							items={pages}
+							// activePage={this.props.activePage}
+							activePage={this.state.activePage}
+							// onSelect={this.props.onPageSelect}
+							onSelect={this.onPageSelect}
+							maxButtons={5}
+				        />
+			        </div>
 					<TileGrid 
 						renderCopyrightTiles={this.renderCopyrightTiles} 
+						// copyrights={this.props.copyrights}
 						copyrights={this.state.copyrights}
 					/>
+					<div className={styles.paginationContainerBottom}>
+						<Pagination 
+							prev
+							next
+							first
+							last
+							items={pages}
+							// activePage={this.props.activePage}
+							activePage={this.state.activePage}
+							// onSelect={this.props.onPageSelect}
+							onSelect={this.onPageSelect}
+							maxButtons={5}
+				        />
+			        </div>
 				</div>
 			</div>
 		);
@@ -122,13 +161,20 @@ export default class App extends React.Component {
 
 // function mapStateToProps(state) {
 //   return {
-//   	test: this.state.test
+//   	copyrights: state.copyrights,
+//   	activePage: state.activePage,
+//   	total: state.total,
+//   	searchInput: state.searchInput
 //   }
 // }
 
 // function mapDispatchToProps(dispatch) {
 //   return bindActionCreators({
-//     action: actions.action
+//     getCopyrightsSuccess: actions.getCopyrightsSuccess,
+//     onPageSelect: actions.onPageSelect,
+//     handleSearchInput: actions.handleSearchInput,
+//     handleSearchSubmit: actions.handleSearchSubmit
+
 //   }, dispatch);
 // }
 
