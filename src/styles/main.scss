@@ -1,11 +1,15 @@
-/************* MAIN CONTAINER *****************/
-.mainContainer {
-  border: 1px solid red;
+/************* APP *****************/
+/* Add relative position? */
+.appContainer {
+  height: 4250px;
+  width: 100%;
+  background: #FCFCFC;
 }
 
 
 /************* NAV *****************/
 .navContainer {
+	position: relative;
 	height: 60px;
 	border: 1px solid black;
 }
@@ -37,12 +41,12 @@
 /************* PAGINATION *****************/
 .paginationContainerTop {
 	position: absolute;
-	right: 30px;
+	right: 9%;
 }
 
 .paginationContainerBottom {
-	position: absolute;
-	right: 30px;
+	@extend .paginationContainerTop;
+	top: 4100px;
 }
 
 
@@ -51,10 +55,10 @@
 .tileGridContainer {
 	position: absolute;
 	top: 60px;
-	width: 80%;
+	width: 84%;
 	height: 4000px;
 	align: center;
-	margin: 12px 10%;
+	margin: 12px 8%;
 
 	display: flex;
 	flex-direction: column;
@@ -68,24 +72,39 @@
 }
 
 .tileContainer {
-	height: 400px;
-	width: 296px;
-	border: 1px solid black;
+	height: 440px;
+	width: 320px;
 	display: inline-block;
 	margin: 20px 0;
+	background: white;
+	box-shadow: 2px 6px 16px 6px rgba(0, 0, 0, 0.1);
+	a {
+		text-decoration: none;
+	}
 }
 
 .avatar {
 	height: 30px;
 	width: 30px;
 	display: inline-block;
+	border-radius: 50%;
+	margin: 8px;
 }
 
 .name {
 	display: inline-block;
 }
 
-.copyrightImg {
+.copyrightThumb {
 	height: width;
 	width: 100%;
+}
+
+.copyrightTitle {
+	font-weight: bold;
+	margin: 8px;
+}
+
+.copyrightDescription {
+	margin: 8px;
 }
