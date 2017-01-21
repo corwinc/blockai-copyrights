@@ -1,27 +1,28 @@
 export function getCopyrightsSuccess(data, total) {
   return {
     type: 'GET_COPYRIGHTS_SUCCESS',
-    data, total
+    data,
+    total,
   }
 }
 
 export function onPageSelect(page) {
   return {
     type: 'ON_PAGE_SELECT',
-    page
+    page,
   }
 }
 
 export function handleSearchInput(input) {
   return {
     type: 'HANDLE_SEARCH_INPUT',
-    input
+    input,
   }
 }
 
 export function handleSearchSubmit() {
   return {
     type: 'HANDLE_SEARCH_SUBMIT',
-    activePage: 1
+    activePage: 1,
   }
 }

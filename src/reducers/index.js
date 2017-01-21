@@ -2,26 +2,26 @@ const initialState = {
   copyrights: ['test'],
   activePage: 1,
   total: null,
-  searchInput: ''
+  searchInput: '',
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'GET_COPYRIGHTS_SUCCESS':
       return Object.assign({}, state, {
-        copyrights: action.copyrights
+        copyrights: action.copyrights,
       })
-  	case 'ON_PAGE_SELECT':
+    case 'ON_PAGE_SELECT':
       return Object.assign({}, state, {
-        activePage: action.page
+        activePage: action.page,
       })
-  	case 'ON_SEARCH_INPUT':
+    case 'ON_SEARCH_INPUT':
       return Object.assign({}, state, {
-        searchInput: action.input
+        searchInput: action.input,
       })
-  	case 'ON_SEARCH_SUBMIT':
+    case 'ON_SEARCH_SUBMIT':
       return Object.assign({}, state, {
-        activePage: action.activePage
+        activePage: action.activePage,
       })
     default:
       return state
