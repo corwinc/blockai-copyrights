@@ -1,5 +1,5 @@
 const initialState = {
-  copyrights: [],
+  copyrights: ['test'],
   activePage: 1,
   total: null,
   searchInput: ''

@@ -1,5 +1,7 @@
 import React from 'react';
-import {render, connect} from 'react-dom';
+import {render} from 'react-dom';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import ReactPlayer from 'react-player';
 import Nav from './Nav.jsx';
 import {Pagination} from 'react-bootstrap';
@@ -72,6 +74,7 @@ export default class App extends React.Component {
 	}
 
 	renderMedia(cr) {
+		// Need to fix video rendering: currently showing blank
 		if (cr.content_type_primary === 'video') {
 			return (
 				<div>
@@ -101,7 +104,7 @@ export default class App extends React.Component {
 
 	handleSearchSubmit(e) {
 		e.preventDefault();
-		// IMPLEMENT ASYNCHRONOUS HANDLING
+		// IMPLEMENT ASYNCHRONOUS HANDLING w/ REDUX (e.g. thunx)
 		// this.props.handleSearchSubmit, this.getCopyrights);
 		this.setState({activePage: 1}, this.getCopyrights);
 	}
@@ -178,4 +181,4 @@ export default class App extends React.Component {
 //   }, dispatch);
 // }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(CopyrightsContainer);
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
