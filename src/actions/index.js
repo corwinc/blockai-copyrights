@@ -13,16 +13,16 @@ export function onPageSelect(page) {
   }
 }
 
-export function handleSearchInput(input) {
+export function handleSearchInput(e) {
   return {
-    type: 'HANDLE_SEARCH_INPUT',
-    input,
+    type: 'ON_SEARCH_INPUT',
+    input: e.target.value
   }
 }
 
 export function handleSearchSubmit() {
   return {
-    type: 'HANDLE_SEARCH_SUBMIT',
+    type: 'ON_SEARCH_SUBMIT',
     activePage: 1,
   }
 }

@@ -11,27 +11,16 @@ import Tile from './Tile.jsx';
 import styles from '../styles/main.scss';
 import * as actions from '../actions/index.js';
 
-export default class App extends React.Component {
+class App extends React.Component {
 	constructor(props) {
 		super(props);
-
-		// DELETE W/ REDUX
-		this.state = {
-			copyrights: [],
-			activePage: 1,
-			total: null,
-			searchInput: ''
-		};
 
 		var items = 36;
 
 		// SELECTIVELY DELETE W/ REDUX
 		this.getCopyrights = this.getCopyrights.bind(this);
-		this.setCopyrights = this.setCopyrights.bind(this);
 		this.renderCopyrightTiles = this.renderCopyrightTiles.bind(this);
 		this.renderMedia = this.renderMedia.bind(this);
-		this.onPageSelect = this.onPageSelect.bind(this);
-		this.handleSearchInput = this.handleSearchInput.bind(this);
 		this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
 	}
 
@@ -42,29 +31,22 @@ export default class App extends React.Component {
 
 //// COPYRIGHT CLAIMS ////
 	getCopyrights() {
+		console.log('inside getCopyrights, activePage:', this.props.activePage);
 		var items = 36;
-		// var url = 'https://api.blockai.com/v1/registrations/challenge?include=user&page=' + this.props.activePage + '&limit=' + items + '&search=' + this.props.searchInput;
-		var url = 'https://api.blockai.com/v1/registrations/challenge?include=user&page=' + this.state.activePage + '&limit=' + items + '&search=' + this.state.searchInput;
+		var url = 'https://api.blockai.com/v1/registrations/challenge?include=user&page=' + this.props.activePage + '&limit=' + items + '&search=' + this.props.searchInput;
 
 		fetch(url)
 			.then((res) => res.json())
 		    .then((data) => {
-		    	//this.props.getCopyrightsSuccess(data.data, data.total);
-		      	this.setCopyrights(data);
+		    	this.props.getCopyrightsSuccess(data.data, data.total);
 		    })
 		    .catch((err) => (
 		    	console.log(err)
 		    ));
 	}
 
-	// DELETE W/ REDUX
-	setCopyrights(res) {
-		this.setState({copyrights: res.data, total: res.total});
-	}
-
 	renderCopyrightTiles() {
-		// var copyrightTiles = this.props.copyrights.map((cr, i) => {
-		var copyrightTiles = this.state.copyrights.map((cr, i) => {
+		var copyrightTiles = this.props.copyrights.map((cr) => {
 			return (
 				<Tile key={cr.id} copyright={cr} renderMedia={this.renderMedia} />
 			)
@@ -90,36 +72,32 @@ export default class App extends React.Component {
 		}
 	}
 
+
+
 //// PAGINATION ////
-	// DELETE W/ REDUX
-	onPageSelect(page) {
-	  	this.setState({activePage: page}, this.getCopyrights);
+	onPageSelect(page, cb) {
+		new Promise((resolve) => resolve(this.props.onPageSelect(page)))
+			.then(() => {
+				cb();
+			});
 	}
 
 //// SEARCH ////
-	// DELETE W/ REDUX
-	handleSearchInput(e) {
-		this.setState({searchInput: e.target.value});
-	}
-
 	handleSearchSubmit(e) {
 		e.preventDefault();
-		// IMPLEMENT ASYNCHRONOUS HANDLING w/ REDUX (e.g. thunx)
-		// this.props.handleSearchSubmit, this.getCopyrights);
-		this.setState({activePage: 1}, this.getCopyrights);
+		new Promise((resolve) => resolve(this.props.handleSearchSubmit(e)))
+			.then(() => this.getCopyrights());
 	}
 
 
 //// RENDER ////
 	render() {
-		var pages = Math.ceil(this.state.total / 36);
+		var pages = Math.ceil(this.props.total / 36);
 
 		return (
 			<div className={styles.appContainer}>
 				<Nav 
-					// handleSearchInput={this.props.handleSearchInput} 
-					// handleSearchSubmit={this.props.handleSearchSubmit}
-					handleSearchInput={this.handleSearchInput} 
+					handleSearchInput={this.props.handleSearchInput} 
 					handleSearchSubmit={this.handleSearchSubmit} 
 				/>
 				<div className={styles.copyrightsContainer}>
@@ -130,17 +108,14 @@ export default class App extends React.Component {
 							first
 							last
 							items={pages}
-							// activePage={this.props.activePage}
-							activePage={this.state.activePage}
-							// onSelect={this.props.onPageSelect}
-							onSelect={this.onPageSelect}
+							activePage={this.props.activePage}
+							onSelect={(page) => this.onPageSelect(page, this.getCopyrights)}
 							maxButtons={5}
 				        />
 			        </div>
 					<TileGrid 
 						renderCopyrightTiles={this.renderCopyrightTiles} 
-						// copyrights={this.props.copyrights}
-						copyrights={this.state.copyrights}
+						copyrights={this.props.copyrights}
 					/>
 					<div className={styles.paginationContainerBottom}>
 						<Pagination 
@@ -149,9 +124,7 @@ export default class App extends React.Component {
 							first
 							last
 							items={pages}
-							// activePage={this.props.activePage}
-							activePage={this.state.activePage}
-							// onSelect={this.props.onPageSelect}
+							activePage={this.props.activePage}
 							onSelect={this.onPageSelect}
 							maxButtons={5}
 				        />
@@ -162,23 +135,23 @@ export default class App extends React.Component {
 	}
 }
 
-// function mapStateToProps(state) {
-//   return {
-//   	copyrights: state.copyrights,
-//   	activePage: state.activePage,
-//   	total: state.total,
-//   	searchInput: state.searchInput
-//   }
-// }
+function mapStateToProps(state) {
+  return {
+  	copyrights: state.copyrights,
+  	activePage: state.activePage,
+  	total: state.total,
+  	searchInput: state.searchInput
+  }
+}
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({
-//     getCopyrightsSuccess: actions.getCopyrightsSuccess,
-//     onPageSelect: actions.onPageSelect,
-//     handleSearchInput: actions.handleSearchInput,
-//     handleSearchSubmit: actions.handleSearchSubmit
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    getCopyrightsSuccess: actions.getCopyrightsSuccess,
+    onPageSelect: actions.onPageSelect,
+    handleSearchInput: actions.handleSearchInput,
+    handleSearchSubmit: actions.handleSearchSubmit
 
-//   }, dispatch);
-// }
+  }, dispatch);
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
