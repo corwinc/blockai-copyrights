@@ -8,7 +8,6 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'GET_COPYRIGHTS_SUCCESS':
-    	// console.log('inside reducer');
       return Object.assign({}, state, {
         copyrights: action.data,
         total: action.total
@@ -18,7 +17,6 @@ export default (state = initialState, action) => {
         activePage: action.page,
       })
     case 'ON_SEARCH_INPUT':
-    console.log('searchinput:', action.input);
       return Object.assign({}, state, {
         searchInput: action.input,
       })

@@ -17,7 +17,6 @@ class App extends React.Component {
 
 		var items = 36;
 
-		// SELECTIVELY DELETE W/ REDUX
 		this.getCopyrights = this.getCopyrights.bind(this);
 		this.renderCopyrightTiles = this.renderCopyrightTiles.bind(this);
 		this.renderMedia = this.renderMedia.bind(this);
@@ -31,7 +30,6 @@ class App extends React.Component {
 
 //// COPYRIGHT CLAIMS ////
 	getCopyrights() {
-		console.log('inside getCopyrights, activePage:', this.props.activePage);
 		var items = 36;
 		var url = 'https://api.blockai.com/v1/registrations/challenge?include=user&page=' + this.props.activePage + '&limit=' + items + '&search=' + this.props.searchInput;
 
