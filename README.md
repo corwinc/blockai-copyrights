@@ -11,5 +11,5 @@ npm run hot
 open http://localhost:8080
 ```
 
-## Frontend Technology
+## Technology
 React, Redux, Bootstrap
